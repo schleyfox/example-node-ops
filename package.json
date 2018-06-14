@@ -1,0 +1,13 @@
+{
+  "name": "example-node-ops",
+  "version": "0.0.1",
+  "description": "example of a node server with nginx, haproxy, pool-hall",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "pool-hall": "^0.0.2"
+  }
+}
