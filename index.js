@@ -50,6 +50,9 @@ startPoolHall(
 
     process.title = `node example_app worker[${workerId}]`;
 
+    // simulate server boot for 20s
+    spinWait(20000);
+
     const app = express();
 
     let healthy = false;
