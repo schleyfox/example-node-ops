@@ -28,12 +28,20 @@ startPoolHall(
 
     process.on('SIGTERM', () => {
       console.log('Got SIGTERM. Going down.');
-      poolHall.stop().then(() => process.exit(0), () => process.exit(1));
+      poolHall.stop().then(() => {
+        process.exitCode = 0;
+      }, () => {
+        process.exitCode = 1;
+      });
     });
 
     process.on('SIGINT', () => {
       console.log('Got SIGINT. Going down.');
-      poolHall.stop().then(() => process.exit(0), () => process.exit(1));
+      poolHall.stop().then(() => {
+        process.exitCode = 0;
+      }, () => {
+        process.exitCode = 1;
+      });
     });
 
     poolHall.on('workerUp', (id) => {
@@ -94,6 +102,8 @@ startPoolHall(
 
     const server = app.listen(process.env.PORT, "localhost", ready);
 
-    poolHall.worker.onShutdown = () => server.close(() => process.exit(0));
+    poolHall.worker.onShutdown = () => server.close(() => {
+      process.exitCode = 0;
+    });
   }
 );
